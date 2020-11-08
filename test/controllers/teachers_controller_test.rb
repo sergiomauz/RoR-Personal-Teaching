@@ -6,33 +6,43 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get teachers_url, as: :json
+    get teachers_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_teacher_url
     assert_response :success
   end
 
   test "should create teacher" do
     assert_difference('Teacher.count') do
-      post teachers_url, params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }, as: :json
+      post teachers_url, params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }
     end
 
-    assert_response 201
+    assert_redirected_to teacher_url(Teacher.last)
   end
 
   test "should show teacher" do
-    get teacher_url(@teacher), as: :json
+    get teacher_url(@teacher)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_teacher_url(@teacher)
     assert_response :success
   end
 
   test "should update teacher" do
-    patch teacher_url(@teacher), params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }, as: :json
-    assert_response 200
+    patch teacher_url(@teacher), params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }
+    assert_redirected_to teacher_url(@teacher)
   end
 
   test "should destroy teacher" do
     assert_difference('Teacher.count', -1) do
-      delete teacher_url(@teacher), as: :json
+      delete teacher_url(@teacher)
     end
 
-    assert_response 204
+    assert_redirected_to teachers_url
   end
 end
