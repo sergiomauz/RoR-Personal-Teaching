@@ -1,3 +1,4 @@
+# rubocop: disable Layout/LineLength
 require 'test_helper'
 
 class TeachersControllerTest < ActionDispatch::IntegrationTest
@@ -5,12 +6,12 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     @teacher = teachers(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get teachers_url, as: :json
     assert_response :success
   end
 
-  test "should create teacher" do
+  test 'should create teacher' do
     assert_difference('Teacher.count') do
       post teachers_url, params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }, as: :json
     end
@@ -18,17 +19,17 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_response 201
   end
 
-  test "should show teacher" do
+  test 'should show teacher' do
     get teacher_url(@teacher), as: :json
     assert_response :success
   end
 
-  test "should update teacher" do
+  test 'should update teacher' do
     patch teacher_url(@teacher), params: { teacher: { course: @teacher.course, description: @teacher.description, email: @teacher.email, fullname: @teacher.fullname, photo: @teacher.photo } }, as: :json
     assert_response 200
   end
 
-  test "should destroy teacher" do
+  test 'should destroy teacher' do
     assert_difference('Teacher.count', -1) do
       delete teacher_url(@teacher), as: :json
     end
@@ -36,3 +37,5 @@ class TeachersControllerTest < ActionDispatch::IntegrationTest
     assert_response 204
   end
 end
+
+# rubocop: enable Layout/LineLength
