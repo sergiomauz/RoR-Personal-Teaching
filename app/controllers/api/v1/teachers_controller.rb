@@ -1,6 +1,6 @@
 class Api::V1::TeachersController < ApplicationController
   before_action :doorkeeper_authorize!
-  before_action :set_teacher, only: [:show, :update, :destroy]
+  before_action :set_teacher, only: %i[show update destroy]
 
   # GET /teachers
   def index
@@ -40,13 +40,14 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_teacher
-      @teacher = Teacher.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def teacher_params
-      params.require(:teacher).permit(:fullname, :email, :photo, :course, :description)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_teacher
+    @teacher = Teacher.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def teacher_params
+    params.require(:teacher).permit(:fullname, :email, :photo, :course, :description)
+  end
 end
