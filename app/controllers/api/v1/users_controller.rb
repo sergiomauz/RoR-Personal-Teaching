@@ -1,6 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :doorkeeper_authorize!
+  before_action :doorkeeper_authorize!, except: %i[create]
   before_action :set_user, only: %i[show update destroy]
+  protect_from_forgery except: [:create]
 
   # GET /users
   # GET /users.json
@@ -51,6 +52,6 @@ class Api::V1::UsersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:fullname, :email, :username, :password)
   end
 end
