@@ -37,6 +37,8 @@ class Api::V1::TeachersController < ApplicationController
   # DELETE /teachers/1
   def destroy
     @teacher.destroy
+
+    render json: @teacher
   end
 
   private

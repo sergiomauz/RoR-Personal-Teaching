@@ -1,7 +1,7 @@
 class Api::V1::UsersController < ApplicationController
   before_action :doorkeeper_authorize!, except: %i[create]
   before_action :set_user, only: %i[show update destroy]
-  protect_from_forgery except: [:create]
+  # protect_from_forgery except: [:create]
 
   # GET /users
   # GET /users.json
@@ -41,6 +41,8 @@ class Api::V1::UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user.destroy
+
+    render json: @user
   end
 
   private
