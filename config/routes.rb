@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   scope 'api' do  
     scope 'v1' do  
       # No need to register client application
