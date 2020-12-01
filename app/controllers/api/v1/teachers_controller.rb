@@ -1,6 +1,6 @@
 class Api::V1::TeachersController < ApplicationController
-  before_action :doorkeeper_authorize!
-  before_action :set_teacher, only: %i[show update destroy]
+  # before_action :doorkeeper_authorize!
+  before_action :set_teacher, only: %i[show update destroy availability]
 
   # GET /teachers
   def index
@@ -12,6 +12,15 @@ class Api::V1::TeachersController < ApplicationController
   # GET /teachers/1
   def show
     render :show
+  end
+
+  # GET /teacher/1/availability/2020-01-01
+  def availability
+    @appointments = Appointment.where('teacher_id = ? AND scheduled_for BETWEEN ? AND ?', @teacher.id, params[:date].to_date, params[:date].to_date.next_day(1))
+
+    @availability = { 'availability' => (8..19).to_a - @appointments.map { |item| item.scheduled_for.hour }.to_a }
+
+    render json: @availability
   end
 
   # POST /teachers
@@ -35,7 +44,8 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # DELETE /teachers/1
-  def destroy    
+  def destroy
+    Appointment.where(teacher_id: @teacher.id).destroy_all
     @teacher.destroy
 
     render json: @teacher

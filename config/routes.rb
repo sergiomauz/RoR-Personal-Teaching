@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :appointments
   scope 'api' do  
     scope 'v1' do  
       # No need to register client application
@@ -14,8 +13,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :teachers
+      resources :appointments
 
       get '/cloudinary', to: 'cloudinary#index', as: 'get_upload_preset'
+      get '/teachers/:id/availability/:date', to: 'teachers#availability', as: 'teachers_availability'
     end
   end    
 end

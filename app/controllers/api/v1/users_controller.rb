@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   # GET /users/1.json
-  def show; 
+  def show
     render :show
   end
 
