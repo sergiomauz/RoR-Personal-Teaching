@@ -4,13 +4,13 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # GET /appointments
   def index
-    @current_user = current_user    
+    @current_user = current_user
     if @current_user
       @appointments = Appointment
-                        .select(:id, :scheduled_for, 'teachers.fullname as teacher_fullname', :'teachers.course', 'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-                        .joins(:user).joins(:teacher).where(user_id: @current_user.id)
-                        .order(scheduled_for: :asc)
-      
+        .select(:id, :scheduled_for, 'teachers.fullname as teacher_fullname', :'teachers.course', 'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
+        .joins(:teacher).where(user_id: @current_user.id)
+        .order(scheduled_for: :asc)
+
       render json: @appointments
     end
   end

@@ -1,24 +1,10 @@
 class Api::V1::UsersController < ApplicationController
   before_action :doorkeeper_authorize!, except: %i[create]
   before_action :set_user, only: %i[show update destroy]
-  # protect_from_forgery except: [:create]
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-
-    render json: @users
-  end
-
-  # GET /users/1
-  # GET /users/1.json
-  def show
-    render :show
-  end
+  before_action :set_users, only: %i[index]
+  before_action :set_current_user, only: %i[index show update destroy]
 
   # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
@@ -29,22 +15,51 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    if @user.update(user_params)
-      render json: @user
+  # GET /users/myprofile
+  def myprofile
+    render :myprofile
+  end
+
+  # GET /users
+  def index
+    if @current_user.admin
+      render :index
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: return_error_message(403), status: :forbidden
+    end
+  end
+
+  # GET /users/1
+  def show
+    if @current_user.admin
+      render :show
+    else
+      render json: return_error_message(403), status: :forbidden
+    end
+  end
+
+  # PATCH/PUT /users/1
+  def update
+    if @current_user.admin
+      if @user.update(user_params)
+        render :show
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
+    else
+      render json: return_error_message(403), status: :forbidden
     end
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
-    @user.destroy
-
-    render json: @user
+    if @current_user.admin
+      Appointment.where(user_id: @user.id).destroy_all
+      @user.destroy
+      render :show
+    else
+      render json: return_error_message(403), status: :forbidden
+    end
   end
 
   private
@@ -52,6 +67,14 @@ class Api::V1::UsersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_users
+    @users = User.all
+  end
+
+  def set_current_user
+    @current_user = current_user
   end
 
   # Only allow a list of trusted parameters through.
