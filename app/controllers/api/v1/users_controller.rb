@@ -2,7 +2,6 @@ class Api::V1::UsersController < ApplicationController
   before_action :doorkeeper_authorize!, except: %i[create]
   before_action :set_user, only: %i[show update destroy]
   before_action :set_users, only: %i[index]
-  before_action :set_current_user, only: %i[index show update destroy]
 
   # POST /users
   def create
@@ -22,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users
   def index
-    if @current_user.admin
+    if has_admin_permission?
       render :index
     else
       render json: return_error_message(403), status: :forbidden
@@ -31,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    if @current_user.admin
+    if has_admin_permission?
       render :show
     else
       render json: return_error_message(403), status: :forbidden
@@ -40,7 +39,7 @@ class Api::V1::UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if @current_user.admin
+    if has_admin_permission?
       if @user.update(user_params)
         render :show
       else
@@ -53,7 +52,7 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    if @current_user.admin
+    if has_admin_permission?
       Appointment.where(user_id: @user.id).destroy_all
       @user.destroy
       render :show
@@ -70,11 +69,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def set_users
-    @users = User.all
-  end
-
-  def set_current_user
-    @current_user = current_user
+    @users = User.all.order(:fullname)
   end
 
   # Only allow a list of trusted parameters through.

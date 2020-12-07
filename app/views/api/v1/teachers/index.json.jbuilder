@@ -1,4 +1,4 @@
-json.array!(@teachers) do |teacher|
+json.teachers(@teachers) do |teacher|
   json.id teacher.id
   json.fullname teacher.fullname
   json.email teacher.email

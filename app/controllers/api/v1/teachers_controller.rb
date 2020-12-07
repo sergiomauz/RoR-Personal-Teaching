@@ -2,7 +2,6 @@ class Api::V1::TeachersController < ApplicationController
   before_action :doorkeeper_authorize!
   before_action :set_teacher, only: %i[show update destroy availability appointments]
   before_action :set_teachers, only: %i[index]
-  before_action :set_current_user, only: %i[appointments create update destroy]
 
   # GET /teachers
   def index
@@ -19,9 +18,18 @@ class Api::V1::TeachersController < ApplicationController
     if params[:date].to_date > Time.now.utc.to_date
       @appointments = Appointment.where('teacher_id = ? AND scheduled_for BETWEEN ? AND ?', @teacher.id, params[:date].to_date, params[:date].to_date.next_day(1))
 
-      @availability = { 'availability' => (8..19).to_a - @appointments.map { |item| item.scheduled_for.hour }.to_a }
+      @availability = { 
+        'teacher' => {
+          'id' => @teacher.id, 
+          'availability' => ((8..12).to_a | (14..19).to_a) - @appointments.map { |item| item.scheduled_for.hour }.to_a } 
+        }
     else
-      @availability = { 'availability' => [] }
+      @availability = { 
+        'teacher' => {
+          'id' => @teacher.id, 
+          'availability' => []
+        }
+      }
     end
 
     render json: @availability
@@ -29,13 +37,13 @@ class Api::V1::TeachersController < ApplicationController
 
   # GET /teachers/1/appointments
   def appointments
-    if @current_user.admin
+    if has_admin_permission?
       @appointments = Appointment
         .select(:id, :scheduled_for, 'users.fullname as user_fullname', 'users.email as user_email', 'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
         .joins(:user).where(teacher_id: @teacher.id)
         .order(scheduled_for: :asc)
 
-      render json: @appointments
+      render :appointments
     else
       render json: return_error_message(403), status: :forbidden
     end
@@ -43,10 +51,10 @@ class Api::V1::TeachersController < ApplicationController
 
   # POST /teachers
   def create
-    if @current_user.admin
+    if has_admin_permission?
       @teacher = Teacher.new(teacher_params)
       if @teacher.save
-        render json: @teacher, status: :created
+        render :show, status: :created
       else
         render json: @teacher.errors, status: :unprocessable_entity
       end
@@ -57,7 +65,7 @@ class Api::V1::TeachersController < ApplicationController
 
   # PATCH/PUT /teachers/1
   def update
-    if @current_user.admin
+    if has_admin_permission?
       if @teacher.update(teacher_params)
         render :show
       else
@@ -70,7 +78,7 @@ class Api::V1::TeachersController < ApplicationController
 
   # DELETE /teachers/1
   def destroy
-    if @current_user.admin
+    if has_admin_permission?
       Appointment.where(teacher_id: @teacher.id).destroy_all
       @teacher.destroy
   
@@ -88,11 +96,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   def set_teachers
-    @teachers = Teacher.all
-  end
-
-  def set_current_user
-    @current_user = current_user
+    @teachers = Teacher.all.order(:fullname)
   end
 
   # Only allow a trusted parameter "white list" through.

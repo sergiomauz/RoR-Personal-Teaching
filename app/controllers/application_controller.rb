@@ -14,11 +14,17 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def has_permission(_action_url)
-    controller_path
-    # false if action_url.nil? || action_url.empty?
-    # User.find(doorkeeper_token.resource_owner_id).admin if doorkeeper_token
+  def get_verb
+    return 'GET' if request.get?
+    return 'POST' if request.post?
+    return 'PUT' if request.put?
+    return 'PATCH' if request.patch?
+    'DELETE'
+  end
 
-    # false
+  def has_admin_permission?
+    # We can use variables for getting permissions if it was necessary
+    # In this case, if current user is admin, it has permission
+    current_user.admin
   end
 end
