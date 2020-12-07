@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::API
   helper_method :current_user
+  helper_method :has_admin_permission?
+  helper_method :return_error_message
+  helper_method :get_verb
 
   def current_user
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
