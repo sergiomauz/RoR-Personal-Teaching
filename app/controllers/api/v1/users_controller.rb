@@ -21,7 +21,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users
   def index
-    if has_admin_permission?
+    if admin_permission?
       render :index
     else
       render json: return_error_message(403), status: :forbidden
@@ -30,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    if has_admin_permission?
+    if admin_permission?
       render :show
     else
       render json: return_error_message(403), status: :forbidden
@@ -39,7 +39,7 @@ class Api::V1::UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    if has_admin_permission?
+    if admin_permission?
       if @user.update(user_params)
         render :show
       else
@@ -52,7 +52,7 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    if has_admin_permission?
+    if admin_permission?
       Appointment.where(user_id: @user.id).destroy_all
       @user.destroy
       render :show

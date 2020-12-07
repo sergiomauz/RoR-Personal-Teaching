@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::API
   helper_method :current_user
-  helper_method :has_admin_permission?
+  helper_method :admin_permission?
   helper_method :return_error_message
-  helper_method :get_verb
+  helper_method :verb_of_request
 
   def current_user
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
@@ -17,15 +17,16 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def get_verb
+  def verb_of_request
     return 'GET' if request.get?
     return 'POST' if request.post?
     return 'PUT' if request.put?
     return 'PATCH' if request.patch?
+
     'DELETE'
   end
 
-  def has_admin_permission?
+  def admin_permission?
     # We can use variables for getting permissions if it was necessary
     # In this case, if current user is admin, it has permission
     current_user.admin

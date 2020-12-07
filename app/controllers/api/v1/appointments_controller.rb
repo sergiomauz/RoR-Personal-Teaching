@@ -7,12 +7,17 @@ class Api::V1::AppointmentsController < ApplicationController
   def index
     if @current_user
       @appointments = Appointment
-        .select(:id, :scheduled_for, 'teachers.fullname as teacher_fullname', :'teachers.course', 'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-        .joins(:teacher).where(user_id: @current_user.id)
+        .select(:id,
+                :scheduled_for,
+                'teachers.fullname as teacher_fullname',
+                'teachers.course',
+                'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
+        .joins(:teacher)
+        .where(user_id: @current_user.id)
         .order(scheduled_for: :asc)
 
       render :index
-    else 
+    else
       render json: return_error_message(403), status: :forbidden
     end
   end
@@ -24,10 +29,16 @@ class Api::V1::AppointmentsController < ApplicationController
 
     if @new_appointment.save
       @appointment = Appointment
-        .select(:id, :scheduled_for, 'teachers.fullname as teacher_fullname', :'teachers.course', 'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-        .joins(:teacher).where(id: @new_appointment.id).first
+        .select(:id,
+                :scheduled_for,
+                'teachers.fullname as teacher_fullname',
+                'teachers.course',
+                'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
+        .joins(:teacher)
+        .where(id: @new_appointment.id)
+        .first
 
-      render json: { 'appointment' => @appointment}, status: :created
+      render json: { 'appointment' => @appointment }, status: :created
     else
       render json: @new_appointment.errors, status: :unprocessable_entity
     end
@@ -35,12 +46,12 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # DELETE /appointments/1
   def destroy
-    if has_admin_permission? || @appointment.user_id === current_user.id
-      @appointment.destroy    
+    if admin_permission? || @appointment.user_id == current_user.id
+      @appointment.destroy
       render :show
     else
       render json: return_error_message(403), status: :forbidden
-    end      
+    end
   end
 
   private
