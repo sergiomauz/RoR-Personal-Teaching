@@ -2,6 +2,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :doorkeeper_authorize!, except: %i[create]
   before_action :set_user, only: %i[show update destroy]
   before_action :set_users, only: %i[index]
+  before_action :set_last_user, only: %i[last]
 
   # POST /users
   def create
@@ -37,6 +38,15 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # GET /users/last
+  def last
+    if admin_permission?
+      render :show
+    else
+      render json: return_error_message(403), status: :forbidden
+    end                
+  end
+
   # PATCH/PUT /users/1
   def update
     if admin_permission?
@@ -55,6 +65,7 @@ class Api::V1::UsersController < ApplicationController
     if admin_permission?
       Appointment.where(user_id: @user.id).destroy_all
       @user.destroy
+
       render :show
     else
       render json: return_error_message(403), status: :forbidden
@@ -64,6 +75,10 @@ class Api::V1::UsersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_last_user
+    @user = User.last
+  end
+
   def set_user
     @user = User.find(params[:id])
   end

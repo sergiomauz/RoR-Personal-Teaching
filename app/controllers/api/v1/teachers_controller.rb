@@ -2,6 +2,7 @@ class Api::V1::TeachersController < ApplicationController
   before_action :doorkeeper_authorize!
   before_action :set_teacher, only: %i[show update destroy availability appointments]
   before_action :set_teachers, only: %i[index]
+  before_action :set_last_teacher, only: %i[last]
 
   # GET /teachers
   def index
@@ -10,6 +11,11 @@ class Api::V1::TeachersController < ApplicationController
 
   # GET /teachers/1
   def show
+    render :show
+  end
+
+  # GET /teachers/last
+  def last
     render :show
   end
 
@@ -101,6 +107,10 @@ class Api::V1::TeachersController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_last_teacher
+    @teacher = Teacher.last
+  end
+
   def set_teacher
     @teacher = Teacher.find(params[:id])
   end

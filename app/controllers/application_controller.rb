@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
   helper_method :return_error_message
   helper_method :verb_of_request
 
-  def current_user
+  def current_user        
     User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 
