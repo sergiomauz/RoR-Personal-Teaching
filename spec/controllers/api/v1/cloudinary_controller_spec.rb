@@ -13,7 +13,6 @@ RSpec.describe Api::V1::CloudinaryController do
       end
 
       it 'Returns HTTP unauthorized' do
-        byebug
         expect(response).to have_http_status(:unauthorized)
       end
     end

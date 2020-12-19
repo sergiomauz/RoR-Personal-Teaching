@@ -25,7 +25,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # GET /appointments/last
   def last
-    render :show                
+    render :show
   end
 
   # POST /appointments

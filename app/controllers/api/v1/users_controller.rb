@@ -44,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
       render :show
     else
       render json: return_error_message(403), status: :forbidden
-    end                
+    end
   end
 
   # PATCH/PUT /users/1
