@@ -2,27 +2,30 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController do
-  describe 'Tests for USERS controller' do
-    let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: 1, expires_in: 1.hours) }
-    let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: 2, expires_in: 1.hours) }
+  before(:all) do
+    FactoryBot.create(:user,
+                      username: 'admin',
+                      fullname: 'Super Administrator',
+                      email: 'admin@example.xyz',
+                      admin: true)
+    FactoryBot.create(:user,
+                      username: 'student',
+                      fullname: 'Eternal Student',
+                      email: 'student@example.xyz',
+                      admin: false)
+    FactoryBot.create(:user,
+                      username: 'employee',
+                      fullname: 'Good Employee',
+                      email: 'employee@example.xyz',
+                      admin: false)
+  end
 
-    before do
-      FactoryBot.create(:user,
-                        username: 'admin',
-                        fullname: 'Super Administrator',
-                        email: 'admin@example.xyz',
-                        admin: true)
-      FactoryBot.create(:user,
-                        username: 'student',
-                        fullname: 'Eternal Student',
-                        email: 'student@example.xyz',
-                        admin: false)
-      FactoryBot.create(:user,
-                        username: 'employee',
-                        fullname: 'Good Employee',
-                        email: 'employee@example.xyz',
-                        admin: false)
-    end
+  describe 'Tests for USERS controller' do
+    let(:user_first_id) { User.first.id }
+    let(:user_last_id) { User.last.id }
+
+    let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_first_id, expires_in: 1.hours) }
+    let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_last_id, expires_in: 1.hours) }
 
     render_views
 
@@ -79,7 +82,7 @@ RSpec.describe Api::V1::UsersController do
 
     context 'GET #show for User with ID = 1' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        get :show, params: { id: '1' }, format: :json
+        get :show, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
@@ -87,7 +90,7 @@ RSpec.describe Api::V1::UsersController do
       it 'Returns HTTP forbidden if use -not_admin_session-' do
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
-        get :show, params: { id: '1' }, format: :json
+        get :show, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:forbidden)
       end
@@ -95,7 +98,7 @@ RSpec.describe Api::V1::UsersController do
       it 'Returns HTTP success if use -admin_session-' do
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
-        get :show, params: { id: '1' }, format: :json
+        get :show, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body).keys).to match_array(['user'])
@@ -146,7 +149,7 @@ RSpec.describe Api::V1::UsersController do
     context 'PUT #update for User with ID = 3' do
       it 'Returns HTTP unauthorized if do not use a session' do
         put :update,
-            params: { id: '3', user: {
+            params: { id: user_last_id, user: {
               fullname: 'Another Good Student',
               email: 'another@xmail.xyz',
               username: 'another',
@@ -161,7 +164,7 @@ RSpec.describe Api::V1::UsersController do
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         put :update,
-            params: { id: '3', user: {
+            params: { id: user_last_id, user: {
               fullname: 'Another Good Student',
               email: 'another@xmail.xyz',
               username: 'another',
@@ -176,7 +179,7 @@ RSpec.describe Api::V1::UsersController do
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         put :update,
-            params: { id: '3', user: {
+            params: { id: user_last_id, user: {
               fullname: 'Another Good Student',
               email: 'another@xmail.xyz',
               username: 'another',
@@ -191,7 +194,7 @@ RSpec.describe Api::V1::UsersController do
 
     context 'DELETE #destroy' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        delete :destroy, params: { id: '3' }, format: :json
+        delete :destroy, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
@@ -199,7 +202,7 @@ RSpec.describe Api::V1::UsersController do
       it 'Returns HTTP forbidden if use -not_admin_session-' do
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
-        delete :destroy, params: { id: '3' }, format: :json
+        delete :destroy, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:forbidden)
       end
@@ -207,7 +210,7 @@ RSpec.describe Api::V1::UsersController do
       it 'Returns HTTP success if use -admin_session-' do
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
-        delete :destroy, params: { id: '3' }, format: :json
+        delete :destroy, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body).keys).to match_array(['user'])
