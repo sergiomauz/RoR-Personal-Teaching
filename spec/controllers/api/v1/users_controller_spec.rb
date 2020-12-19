@@ -6,7 +6,7 @@ RSpec.describe Api::V1::UsersController do
     let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: 1, expires_in: 1.hours) }
     let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: 2, expires_in: 1.hours) }
 
-    before(:all) do
+    before do
       FactoryBot.create(:user,
                         username: 'admin',
                         fullname: 'Super Administrator',
