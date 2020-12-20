@@ -1,4 +1,3 @@
-# rubocop: disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe Api::V1::CloudinaryController do
@@ -29,7 +28,7 @@ RSpec.describe Api::V1::CloudinaryController do
     context 'When the request is done without access token' do
       it 'Returns HTTP unauthorized' do
         get :index, format: :json
-        
+
         expect(response).to have_http_status(:unauthorized)
       end
 
@@ -47,9 +46,8 @@ RSpec.describe Api::V1::CloudinaryController do
         get :index, format: :json
 
         expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body).keys).to match_array(['cloud_name', 'upload_preset'])
-      end      
+        expect(JSON.parse(response.body).keys).to match_array(%w[cloud_name upload_preset])
+      end
     end
   end
 end
-# rubocop: enable Metrics/BlockLength

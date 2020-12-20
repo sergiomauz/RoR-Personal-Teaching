@@ -34,7 +34,7 @@ RSpec.describe Api::V1::TeachersController do
                       description: 'Algorithms and Artificial Intelligence',
                       email: 'sergio@xmail.xyz',
                       photo: 'https://localhost:8080/image3.png')
-    
+
     FactoryBot.create(:appointment,
                       teacher_id: Teacher.first.id,
                       user_id: User.first.id,
@@ -48,7 +48,7 @@ RSpec.describe Api::V1::TeachersController do
     let(:appointment_first_id) { Appointment.first.id }
 
     let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_first_id, expires_in: 1.hours) }
-    let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_last_id, expires_in: 1.hours) }    
+    let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_last_id, expires_in: 1.hours) }
     let(:date_for_testing_appointments) { Time.now.utc.next_day(1).to_s[0..9] }
 
     render_views

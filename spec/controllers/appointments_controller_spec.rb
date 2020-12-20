@@ -6,7 +6,7 @@ RSpec.describe Api::V1::AppointmentsController do
     FactoryBot.create(:user,
                       username: 'admin',
                       password: '123456',
-                      fullname: 'Super Administrator',                      
+                      fullname: 'Super Administrator',
                       email: 'admin@example.xyz',
                       admin: true)
     FactoryBot.create(:user,
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::AppointmentsController do
     FactoryBot.create(:appointment,
                       teacher_id: Teacher.first.id,
                       user_id: User.last.id,
-                      scheduled_for: Time.now.utc.next_day(1).to_s[0..9])      
+                      scheduled_for: Time.now.utc.next_day(1).to_s[0..9])
   end
 
   describe 'Tests for TEACHERS controller' do
@@ -53,12 +53,12 @@ RSpec.describe Api::V1::AppointmentsController do
 
     let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_first_id, expires_in: 1.hours) }
     let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_last_id, expires_in: 1.hours) }
-    let(:date_for_testing_appointments) { Time.now.utc.next_day(1).to_s[0..9] }    
+    let(:date_for_testing_appointments) { Time.now.utc.next_day(1).to_s[0..9] }
 
     render_views
 
     context 'GET #index' do
-      it 'Returns HTTP unauthorized if do not use a session' do        
+      it 'Returns HTTP unauthorized if do not use a session' do
         get :index, format: :json
 
         expect(response).to have_http_status(:unauthorized)
@@ -114,7 +114,7 @@ RSpec.describe Api::V1::AppointmentsController do
         post :create,
              params: { appointment: {
                scheduled_for: date_for_testing_appointments,
-               teacher_id: teacher_last_id,
+               teacher_id: teacher_last_id
              } },
              format: :json
 
@@ -127,7 +127,7 @@ RSpec.describe Api::V1::AppointmentsController do
         post :create,
              params: { appointment: {
                scheduled_for: date_for_testing_appointments,
-               teacher_id: teacher_last_id,
+               teacher_id: teacher_last_id
              } },
              format: :json
 
@@ -141,7 +141,7 @@ RSpec.describe Api::V1::AppointmentsController do
         post :create,
              params: { appointment: {
                scheduled_for: date_for_testing_appointments,
-               teacher_id: teacher_last_id,
+               teacher_id: teacher_last_id
              } },
              format: :json
 

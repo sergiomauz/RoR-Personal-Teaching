@@ -55,11 +55,11 @@ ActiveRecord::Schema.define(version: 2020_11_26_161407) do
   end
 
   create_table "teachers", force: :cascade do |t|
-    t.string "fullname"
-    t.string "email"
+    t.string "fullname", limit: 75, null: false
+    t.string "email", limit: 50, null: false
     t.string "photo"
-    t.string "course"
-    t.string "description"
+    t.string "course", limit: 50, null: false
+    t.string "description", limit: 150, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
