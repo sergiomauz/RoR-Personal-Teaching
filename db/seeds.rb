@@ -14,5 +14,5 @@ user2.save
 teacher1 = Teacher.new({fullname: 'Ludwig von Bertalanfy', email: 'ludwig@xmail.com', course: 'Dynamic Systems', description: 'Math Models, Statistics, etc.'})
 teacher1.save
 
-appointment1 = Application.new(Time.now.utc.next_day(3), teacher1.id)
+appointment1 = Appointment.new({user_id: User.first.id, teacher_id: Teacher.first.id, scheduled_for: Time.now.utc.next_day(3)})
 appointment1.save

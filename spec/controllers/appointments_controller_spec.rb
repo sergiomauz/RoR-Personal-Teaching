@@ -5,11 +5,13 @@ RSpec.describe Api::V1::AppointmentsController do
   before(:all) do
     FactoryBot.create(:user,
                       username: 'admin',
-                      fullname: 'Super Administrator',
+                      password: '123456',
+                      fullname: 'Super Administrator',                      
                       email: 'admin@example.xyz',
                       admin: true)
     FactoryBot.create(:user,
                       username: 'student',
+                      password: '123456',
                       fullname: 'Eternal Student',
                       email: 'student@example.xyz',
                       admin: false)

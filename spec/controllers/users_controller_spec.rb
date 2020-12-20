@@ -5,16 +5,19 @@ RSpec.describe Api::V1::UsersController do
   before(:all) do
     FactoryBot.create(:user,
                       username: 'admin',
+                      password: '123456',
                       fullname: 'Super Administrator',
                       email: 'admin@example.xyz',
                       admin: true)
     FactoryBot.create(:user,
                       username: 'student',
+                      password: '123456',
                       fullname: 'Eternal Student',
                       email: 'student@example.xyz',
                       admin: false)
     FactoryBot.create(:user,
                       username: 'employee',
+                      password: '123456',
                       fullname: 'Good Employee',
                       email: 'employee@example.xyz',
                       admin: false)
