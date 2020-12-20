@@ -51,7 +51,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # GET /teachers/1/appointments
-  api :GET, '/teachers/:id/appointments', 'For listing'  
+  api :GET, '/teachers/:id/appointments', 'For listing'
   def appointments
     if admin_permission?
       @appointments = Appointment

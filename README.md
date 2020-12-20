@@ -25,7 +25,7 @@
 
 
 ## Live Demo
-[Personal Teaching API](https://ror-personal-teaching-backend.herokuapp.com/api/v1/)
+[Personal Teaching API](https://ror-personal-teaching-backend.herokuapp.com/api/v1/). See the documentation before to use.
 
 
 ## How to Install
@@ -48,11 +48,11 @@
 ## Automated Test
 - This project uses RSpec for unit and integration testing.
 - All files are in **spec** directory.
-- In order to run the tests, in terminal, type: ```rspec```
+- In order to run the tests, in terminal, type: ```rspec```, it should return 71 examples and 0 failures.
 
 
 ## API Documentation
-- This project uses Apipie for documentation of API.
+- This project uses **Apipie Gem** for API documentation.
 - After run ```rails s```, go to **http://localhost:3000/api/v1/doc** in your favorite browser to see the API documentation.
 - Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/doc** for online documentation.
 

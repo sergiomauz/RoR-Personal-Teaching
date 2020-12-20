@@ -3,7 +3,7 @@ class Api::V1::CloudinaryController < ApplicationController
 
   # GET /cloudinary
   api :GET, '/cloudinary', 'For requesting Key'
-  def index    
+  def index
     if admin_permission?
       @upload_preset = {
         'cloud_name' => Rails.configuration.x.cloudinary.cloud_name,
