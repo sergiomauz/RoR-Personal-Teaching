@@ -25,7 +25,7 @@
 
 
 ## Live Demo
-[Personal Teaching API](https://floating-anchorage-41841.herokuapp.com/)
+[Personal Teaching API](https://ror-personal-teaching-backend.herokuapp.com/api/v1/)
 
 
 ## How to Install
@@ -38,11 +38,11 @@
 - Run in your terminal **rails db:seed**.
 - Create an account (it is for free) in [Cloudinary](https://cloudinary.com/users/login), confirm your e-mail and sign in.
 - Go to [Cloudinary Account Settings](https://cloudinary.com/console/settings/account) and change the default name of your cloud (try to use a very long random string, more than 30 characters).
-- Copy your **cloud_name** in ```config/application.rb``` (replacing the value in **config.x.cloudinary.cloud_name**)
+- Copy your **cloud_name** in ```config/application.rb``` (replace the value in **config.x.cloudinary.cloud_name**)
 - Go to your [Cloudinary Upload Settings](https://cloudinary.com/console/settings/upload).
 - Move to **Upload presets** and create new strong **Unsigned preset**. Try to use a long string (more than 60 characters).
-- Copy your **upload_preset** in ```config/application.rb``` (replacing the value in **config.x.cloudinary.upload_preset**)
-- Run in your terminal **rails server**.
+- Copy your **upload_preset** in ```config/application.rb``` (replace the value in **config.x.cloudinary.upload_preset**)
+- Run in your terminal ```rails s```.
 
 
 ## Automated Test
@@ -52,9 +52,9 @@
 
 
 ## API Documentation
-- This project uses RSpec for unit and integration testing.
-- All files are in **spec** directory.
-- In order to run the tests, in terminal, type: ```rspec```
+- This project uses Apipie for documentation of API.
+- After run ```rails s```, go to **http://localhost:3000/api/v1/doc** in your favorite browser to see the API documentation.
+- Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/doc** for online documentation.
 
 
 ## Author
