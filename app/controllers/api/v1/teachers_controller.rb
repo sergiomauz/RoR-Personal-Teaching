@@ -5,21 +5,25 @@ class Api::V1::TeachersController < ApplicationController
   before_action :set_last_teacher, only: %i[last]
 
   # GET /teachers
+  api :GET, '/teachers', 'For listing'
   def index
     render :index
   end
 
   # GET /teachers/1
+  api :GET, '/teachers/:id', 'For listing'
   def show
     render :show
   end
 
   # GET /teachers/last
+  api :GET, '/teachers/last', 'For listing'
   def last
     render :show
   end
 
   # GET /teachers/1/availability/2020-01-01
+  api :GET, '/teachers/:id/availability/:date', 'For listing'
   def availability
     if params[:date].to_date > Time.now.utc.to_date
       @appointments = Appointment
@@ -47,6 +51,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # GET /teachers/1/appointments
+  api :GET, '/teachers/:id/appointments', 'For listing'  
   def appointments
     if admin_permission?
       @appointments = Appointment
@@ -66,6 +71,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # POST /teachers
+  api :POST, '/teachers', 'For creating'
   def create
     if admin_permission?
       @teacher = Teacher.new(teacher_params)
@@ -80,6 +86,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # PATCH/PUT /teachers/1
+  api :PUT, '/teachers/:id', 'For updating'
   def update
     if admin_permission?
       if @teacher.update(teacher_params)
@@ -93,6 +100,7 @@ class Api::V1::TeachersController < ApplicationController
   end
 
   # DELETE /teachers/1
+  api :DELETE, '/teachers/:id', 'For removing'
   def destroy
     if admin_permission?
       Appointment.where(teacher_id: @teacher.id).destroy_all

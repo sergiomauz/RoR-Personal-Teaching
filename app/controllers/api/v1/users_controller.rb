@@ -5,6 +5,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_last_user, only: %i[last]
 
   # POST /users
+  api :POST, '/users', 'For creating'
   def create
     @user = User.new(user_params)
 
@@ -16,11 +17,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/myprofile
+  api :GET, '/users/myprofile', 'For showing'
   def myprofile
     render :myprofile
   end
 
   # GET /users
+  api :GET, '/users', 'For listing'
   def index
     if admin_permission?
       render :index
@@ -30,6 +33,8 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/1
+  api :GET, '/users/:id', 'For showing'
+  param :id, :number, desc: 'id of the requested user'
   def show
     if admin_permission?
       render :show
@@ -39,6 +44,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/last
+  api :GET, '/users/last', 'For showing'
   def last
     if admin_permission?
       render :show
@@ -48,6 +54,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
+  api :PUT, '/users/:id', 'For updating'
   def update
     if admin_permission?
       if @user.update(user_params)
@@ -61,6 +68,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # DELETE /users/1
+  api :DELETE, '/users/:id', 'For removing'
   def destroy
     if admin_permission?
       Appointment.where(user_id: @user.id).destroy_all

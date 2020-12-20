@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Sessions
 gem 'doorkeeper'
+
+# Documentation
+gem 'apipie-rails'
