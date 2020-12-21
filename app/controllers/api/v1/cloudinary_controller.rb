@@ -2,7 +2,6 @@ class Api::V1::CloudinaryController < ApplicationController
   before_action :doorkeeper_authorize!
 
   # GET /cloudinary
-  api :GET, '/cloudinary', 'For requesting Key'
   def index
     if admin_permission?
       @upload_preset = {

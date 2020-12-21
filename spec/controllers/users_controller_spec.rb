@@ -34,12 +34,18 @@ RSpec.describe Api::V1::UsersController do
 
     context 'GET #index' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         get :index, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :index, format: :json
@@ -48,6 +54,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :index, format: :json
@@ -59,12 +68,18 @@ RSpec.describe Api::V1::UsersController do
 
     context 'GET #myprofile' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         get :myprofile, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP success if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :myprofile, format: :json
@@ -74,6 +89,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :myprofile, format: :json
@@ -85,12 +103,18 @@ RSpec.describe Api::V1::UsersController do
 
     context 'GET #show for User with ID = 1' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         get :show, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :show, params: { id: user_last_id }, format: :json
@@ -99,6 +123,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :show, params: { id: user_last_id }, format: :json
@@ -110,12 +137,18 @@ RSpec.describe Api::V1::UsersController do
 
     context 'GET #last' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         get :last, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :last, format: :json
@@ -124,6 +157,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :last, format: :json
@@ -135,6 +171,9 @@ RSpec.describe Api::V1::UsersController do
 
     context 'POST #create' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         post :create,
              params: { user: {
                fullname: 'Another Good Student',
@@ -151,6 +190,9 @@ RSpec.describe Api::V1::UsersController do
 
     context 'PUT #update for User with ID = 3' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         put :update,
             params: { id: user_last_id, user: {
               fullname: 'Another Good Student',
@@ -164,6 +206,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         put :update,
@@ -179,6 +224,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         put :update,
@@ -197,12 +245,18 @@ RSpec.describe Api::V1::UsersController do
 
     context 'DELETE #destroy' do
       it 'Returns HTTP unauthorized if do not use a session' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         delete :destroy, params: { id: user_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         delete :destroy, params: { id: user_last_id }, format: :json
@@ -211,6 +265,9 @@ RSpec.describe Api::V1::UsersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
+        Apipie.record('params')
+        Apipie.record('examples')
+
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         delete :destroy, params: { id: user_last_id }, format: :json

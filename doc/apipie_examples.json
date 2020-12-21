@@ -1,0 +1,1206 @@
+{
+  "appointments#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+        "appointment": {
+          "scheduled_for": "2020-12-22",
+          "teacher_id": "3"
+        }
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+        "appointment": {
+          "scheduled_for": "2020-12-22",
+          "teacher_id": "3"
+        }
+      },
+      "response_data": {
+        "appointment": {
+          "id": 3,
+          "scheduled_for": "2020-12-22T00:00:00.000Z",
+          "teacher_fullname": "Sergio Zambrano",
+          "course": "Computer Science",
+          "status": 1
+        }
+      },
+      "code": "201",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+        "appointment": {
+          "scheduled_for": "2020-12-22",
+          "teacher_id": "3"
+        }
+      },
+      "response_data": {
+        "appointment": {
+          "id": 4,
+          "scheduled_for": "2020-12-22T00:00:00.000Z",
+          "teacher_fullname": "Sergio Zambrano",
+          "course": "Computer Science",
+          "status": 1
+        }
+      },
+      "code": "201",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "appointments#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/appointments/1",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/appointments/1",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/appointments/1",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": {
+        "appointment": {
+          "id": 1,
+          "user_id": 1,
+          "teacher_id": 1,
+          "scheduled_for": "2020-12-22T00:00:00.000Z"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/appointments/1",
+      "versions": [
+
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": {
+        "appointment": {
+          "id": 1,
+          "user_id": 1,
+          "teacher_id": 1,
+          "scheduled_for": "2020-12-22T00:00:00.000Z"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "appointments#index": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "appointments": [
+          {
+            "id": 2,
+            "scheduled_for": "2020-12-22T00:00:00.000Z",
+            "teacher_fullname": "Neil deGrasse Tyson",
+            "course": "Physics",
+            "status": 1
+          }
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "appointments": [
+          {
+            "id": 1,
+            "scheduled_for": "2020-12-22T00:00:00.000Z",
+            "teacher_fullname": "Neil deGrasse Tyson",
+            "course": "Physics",
+            "status": 1
+          }
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "appointments#last": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments/last",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments/last",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "appointment": {
+          "id": 2,
+          "user_id": 2,
+          "teacher_id": 1,
+          "scheduled_for": "2020-12-22T00:00:00.000Z"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/appointments/last",
+      "versions": [
+
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "appointment": {
+          "id": 1,
+          "user_id": 1,
+          "teacher_id": 1,
+          "scheduled_for": "2020-12-22T00:00:00.000Z"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "cloudinary#index": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/cloudinary",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/cloudinary",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/cloudinary",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "cloud_name": "mt4yammy58c7cu2r5u9u8acwuqeyuy79",
+        "upload_preset": "2q4gaah5pzg6bpany8j6pmjcxy5amqfcjq976ce93rfttupa65drd8j4qdjzgmy4"
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#appointments": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/appointments",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/appointments",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/appointments",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "appointments": [
+
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#availability": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/availability/2020-12-22",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/availability/2020-12-22",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "availability": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/availability/2020-12-22",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "availability": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "description": "All topics are really funny",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Teacher",
+          "photo": "https://localhost:8080/image99.png"
+        }
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "description": "All topics are really funny",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Teacher",
+          "photo": "https://localhost:8080/image99.png"
+        }
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "POST",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "description": "All topics are really funny",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Teacher",
+          "photo": "https://localhost:8080/image99.png"
+        }
+      },
+      "response_data": {
+        "teacher": {
+          "id": 7,
+          "fullname": "Another Good Teacher",
+          "email": "another@xmail.xyz",
+          "photo": "https://localhost:8080/image99.png",
+          "description": "All topics are really funny",
+          "course": "Nobody interesting"
+        }
+      },
+      "code": "201",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#index": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teachers": [
+          {
+            "id": 5,
+            "fullname": "Julio Profe PuntoNet",
+            "email": "julio@xmail.xyz",
+            "photo": "https://localhost:8080/image2.png",
+            "course": "Math",
+            "description": "Limits and derivatives"
+          },
+          {
+            "id": 4,
+            "fullname": "Neil deGrasse Tyson",
+            "email": "neil@xmail.xyz",
+            "photo": "https://localhost:8080/image1.png",
+            "course": "Physics",
+            "description": "Magnetars and Pulsars"
+          },
+          {
+            "id": 6,
+            "fullname": "Sergio Zambrano",
+            "email": "sergio@xmail.xyz",
+            "photo": "https://localhost:8080/image3.png",
+            "course": "Computer Science",
+            "description": "Algorithms and Artificial Intelligence"
+          }
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teachers": [
+          {
+            "id": 5,
+            "fullname": "Julio Profe PuntoNet",
+            "email": "julio@xmail.xyz",
+            "photo": "https://localhost:8080/image2.png",
+            "course": "Math",
+            "description": "Limits and derivatives"
+          },
+          {
+            "id": 4,
+            "fullname": "Neil deGrasse Tyson",
+            "email": "neil@xmail.xyz",
+            "photo": "https://localhost:8080/image1.png",
+            "course": "Physics",
+            "description": "Magnetars and Pulsars"
+          },
+          {
+            "id": 6,
+            "fullname": "Sergio Zambrano",
+            "email": "sergio@xmail.xyz",
+            "photo": "https://localhost:8080/image3.png",
+            "course": "Computer Science",
+            "description": "Algorithms and Artificial Intelligence"
+          }
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#last": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#show": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "teachers#update": [
+    {
+      "verb": "PUT",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Bad Teacher"
+        }
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "PUT",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Bad Teacher"
+        }
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "PUT",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "teacher": {
+          "course": "Nobody interesting",
+          "email": "another@xmail.xyz",
+          "fullname": "Another Bad Teacher"
+        }
+      },
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Another Bad Teacher",
+          "email": "another@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Nobody interesting"
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#create": [
+    {
+      "verb": "POST",
+      "path": "/api/v1/users",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Student",
+          "password": "123456",
+          "username": "another"
+        }
+      },
+      "response_data": {
+        "user": {
+          "id": 10,
+          "fullname": "Another Good Student",
+          "username": "another",
+          "email": "another@xmail.xyz",
+          "admin": false
+        }
+      },
+      "code": "201",
+      "show_in_doc": 1,
+      "recorded": true
+    }
+  ],
+  "users#destroy": [
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "DELETE",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+      },
+      "response_data": {
+        "user": {
+          "id": 9,
+          "fullname": "Good Employee",
+          "username": "employee",
+          "email": "employee@example.xyz",
+          "admin": false
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#index": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/users",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "users": [
+          {
+            "id": 8,
+            "fullname": "Eternal Student",
+            "username": "student",
+            "email": "student@example.xyz",
+            "admin": false
+          },
+          {
+            "id": 9,
+            "fullname": "Good Employee",
+            "username": "employee",
+            "email": "employee@example.xyz",
+            "admin": false
+          },
+          {
+            "id": 7,
+            "fullname": "Super Administrator",
+            "username": "admin",
+            "email": "admin@example.xyz",
+            "admin": true
+          }
+        ]
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#last": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "user": {
+          "id": 9,
+          "fullname": "Good Employee",
+          "username": "employee",
+          "email": "employee@example.xyz",
+          "admin": false
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#myprofile": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/myprofile",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/myprofile",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "myprofile": {
+          "id": 9,
+          "fullname": "Good Employee",
+          "username": "employee",
+          "email": "employee@example.xyz",
+          "admin": false
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/myprofile",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "myprofile": {
+          "id": 7,
+          "fullname": "Super Administrator",
+          "username": "admin",
+          "email": "admin@example.xyz",
+          "admin": true
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#show": [
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "user": {
+          "id": 9,
+          "fullname": "Good Employee",
+          "username": "employee",
+          "email": "employee@example.xyz",
+          "admin": false
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ],
+  "users#update": [
+    {
+      "verb": "PUT",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Student",
+          "password": "123456",
+          "username": "another"
+        }
+      },
+      "response_data": null,
+      "code": "401",
+      "show_in_doc": 1,
+      "recorded": true
+    },
+    {
+      "verb": "PUT",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Student",
+          "password": "123456",
+          "username": "another"
+        }
+      },
+      "response_data": "This resource is forbidden",
+      "code": "403",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "PUT",
+      "path": "/api/v1/users/9",
+      "versions": [
+        "1.0"
+      ],
+      "query": null,
+      "request_data": {
+        "user": {
+          "email": "another@xmail.xyz",
+          "fullname": "Another Good Student",
+          "password": "123456",
+          "username": "another"
+        }
+      },
+      "response_data": {
+        "user": {
+          "id": 9,
+          "fullname": "Another Good Student",
+          "username": "another",
+          "email": "another@xmail.xyz",
+          "admin": false
+        }
+      },
+      "code": "200",
+      "show_in_doc": 0,
+      "recorded": true
+    }
+  ]
+}

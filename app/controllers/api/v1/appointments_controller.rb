@@ -5,7 +5,6 @@ class Api::V1::AppointmentsController < ApplicationController
   before_action :set_last_appointment, only: %i[last]
 
   # GET /appointments
-  api :GET, '/appointments', 'For listing'
   def index
     if @current_user
       @appointments = Appointment
@@ -25,13 +24,11 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # GET /appointments/last
-  api :GET, '/appointments/last', 'For showing'
   def last
     render :show
   end
 
   # POST /appointments
-  api :POST, '/appointments', 'For creating'
   def create
     @new_appointment = Appointment.new(appointment_params)
     @new_appointment.user_id = @current_user.id
@@ -58,7 +55,6 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # DELETE /appointments/1
-  api :DELETE, '/appointments/:id', 'For removing'
   def destroy
     if admin_permission? || @appointment.user_id == current_user.id
       @appointment.destroy
