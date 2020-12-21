@@ -34,6 +34,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   api :POST, '/appointments', 'Create an appointment'
+  header :Authorization, '<strong>Bearer</strong> saas', :required => true
   param :appointment, Hash do
     param :scheduled_for, String
     param :teacher_id, :number
