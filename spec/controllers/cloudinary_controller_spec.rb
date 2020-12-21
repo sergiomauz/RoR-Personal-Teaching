@@ -27,18 +27,12 @@ RSpec.describe Api::V1::CloudinaryController do
 
     context 'When the request is done without access token' do
       it 'Returns HTTP unauthorized' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :index, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :index, format: :json
@@ -47,9 +41,6 @@ RSpec.describe Api::V1::CloudinaryController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :index, format: :json

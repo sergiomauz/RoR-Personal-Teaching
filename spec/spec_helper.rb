@@ -91,4 +91,6 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+  config.treat_symbols_as_metadata_keys_with_true_values = true
+  config.filter_run show_in_doc: true if ENV['APIPIE_RECORD']
 end

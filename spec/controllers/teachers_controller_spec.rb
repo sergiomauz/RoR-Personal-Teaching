@@ -55,18 +55,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'GET #index' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :index, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :index, format: :json
@@ -76,9 +70,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :index, format: :json
@@ -90,18 +81,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'GET #show for Teacher with ID = teacher_last_id' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :show, params: { id: teacher_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP success if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :show, params: { id: teacher_last_id }, format: :json
@@ -111,9 +96,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :show, params: { id: teacher_last_id }, format: :json
@@ -125,18 +107,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'GET #last' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :last, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :last, format: :json
@@ -146,9 +122,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :last, format: :json
@@ -160,18 +133,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'GET #appointments for Teacher with ID = teacher_last_id' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :appointments, params: { id: teacher_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP success if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :appointments, params: { id: teacher_last_id }, format: :json
@@ -180,9 +147,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :appointments, params: { id: teacher_last_id }, format: :json
@@ -194,18 +158,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'GET #availability for Teacher with ID = teacher_last_id' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         get :availability, params: { id: teacher_last_id, date: date_for_testing_appointments }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP success if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         get :availability, params: { id: teacher_last_id, date: date_for_testing_appointments }, format: :json
@@ -215,9 +173,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         get :availability, params: { id: teacher_last_id, date: date_for_testing_appointments }, format: :json
@@ -229,9 +184,6 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'POST #create' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         post :create,
              params: { teacher: {
                fullname: 'Another Good Teacher',
@@ -246,9 +198,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         post :create,
@@ -265,9 +214,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         post :create,
@@ -287,9 +233,6 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'PUT #update for Teacher with ID = 3' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         put :update,
             params: { id: teacher_last_id, teacher: {
               fullname: 'Another Bad Teacher',
@@ -302,9 +245,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         put :update,
@@ -319,9 +259,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         put :update,
@@ -339,18 +276,12 @@ RSpec.describe Api::V1::TeachersController do
 
     context 'DELETE #destroy' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         delete :destroy, params: { id: teacher_last_id }, format: :json
 
         expect(response).to have_http_status(:unauthorized)
       end
 
       it 'Returns HTTP forbidden if use -not_admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
         request.headers.merge! headers
         delete :destroy, params: { id: teacher_last_id }, format: :json
@@ -359,9 +290,6 @@ RSpec.describe Api::V1::TeachersController do
       end
 
       it 'Returns HTTP success if use -admin_session-' do
-        Apipie.record('params')
-        Apipie.record('examples')
-
         headers = { 'Authorization': 'Bearer ' + admin_session.token }
         request.headers.merge! headers
         delete :destroy, params: { id: teacher_last_id }, format: :json

@@ -5,6 +5,8 @@ class Api::V1::AppointmentsController < ApplicationController
   before_action :set_last_appointment, only: %i[last]
 
   # GET /appointments
+  api :GET, '/appointments', 'List appointments'
+  error code: 401
   def index
     if @current_user
       @appointments = Appointment
@@ -24,11 +26,19 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # GET /appointments/last
+  api :GET, '/appointments/last'
+  error code: 401
   def last
     render :show
   end
 
   # POST /appointments
+  api :POST, '/appointments', 'Create an appointment'
+  param :appointment, Hash do
+    param :scheduled_for, String
+    param :teacher_id, :number
+  end
+  error code: 401
   def create
     @new_appointment = Appointment.new(appointment_params)
     @new_appointment.user_id = @current_user.id
@@ -55,6 +65,9 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   # DELETE /appointments/1
+  api :DELETE, '/appointments/:id', 'Destroy an appointment'
+  error code: 401
+  error code: 403
   def destroy
     if admin_permission? || @appointment.user_id == current_user.id
       @appointment.destroy

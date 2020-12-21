@@ -5,6 +5,13 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_last_user, only: %i[last]
 
   # POST /users
+  api :POST, '/users', 'Create an user'
+  param :user, Hash do
+    param :email, String, desc: 'Username for login', required: true
+    param :fullname, String
+    param :password, String
+    param :username, String
+  end
   def create
     @user = User.new(user_params)
 
@@ -16,11 +23,16 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/myprofile
+  api :GET, '/users/myprofile'
+  error code: 401
   def myprofile
     render :myprofile
   end
 
   # GET /users
+  api :GET, '/users', 'List users'
+  error code: 401
+  error code: 403
   def index
     if admin_permission?
       render :index
@@ -30,6 +42,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/1
+  api :GET, '/users/:id', 'Show an user'
+  error code: 401
+  error code: 403
   def show
     if admin_permission?
       render :show
@@ -39,6 +54,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/last
+  api :GET, '/users/last'
+  error code: 401
+  error code: 403
   def last
     if admin_permission?
       render :show
@@ -48,6 +66,16 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
+  api :PATCH, '/users/:id', 'Update an user'
+  api :PUT, '/users/:id', 'Update an user'
+  param :user, Hash do
+    param :email, :undef
+    param :fullname, :undef
+    param :password, :undef
+    param :username, :undef
+  end
+  error code: 401
+  error code: 403
   def update
     if admin_permission?
       if @user.update(user_params)
@@ -61,6 +89,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # DELETE /users/1
+  api :DELETE, '/users/:id', 'Destroy an user'
+  error code: 401
+  error code: 403
   def destroy
     if admin_permission?
       Appointment.where(user_id: @user.id).destroy_all

@@ -4,7 +4,7 @@
       "verb": "POST",
       "path": "/api/v1/appointments",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
       "request_data": {
@@ -22,7 +22,7 @@
       "verb": "POST",
       "path": "/api/v1/appointments",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
       "request_data": {
@@ -41,14 +41,14 @@
         }
       },
       "code": "201",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
       "verb": "POST",
       "path": "/api/v1/appointments",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
       "request_data": {
@@ -67,7 +67,7 @@
         }
       },
       "code": "201",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -76,11 +76,10 @@
       "verb": "DELETE",
       "path": "/api/v1/appointments/1",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": null,
       "code": "401",
       "show_in_doc": 0,
@@ -90,11 +89,10 @@
       "verb": "DELETE",
       "path": "/api/v1/appointments/1",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": "This resource is forbidden",
       "code": "403",
       "show_in_doc": 0,
@@ -104,11 +102,10 @@
       "verb": "DELETE",
       "path": "/api/v1/appointments/1",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": {
         "appointment": {
           "id": 1,
@@ -118,18 +115,17 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
       "verb": "DELETE",
       "path": "/api/v1/appointments/1",
       "versions": [
-
+        "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": {
         "appointment": {
           "id": 1,
@@ -139,7 +135,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -148,20 +144,7 @@
       "verb": "GET",
       "path": "/api/v1/appointments",
       "versions": [
-
-      ],
-      "query": "",
-      "request_data": null,
-      "response_data": null,
-      "code": "401",
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "GET",
-      "path": "/api/v1/appointments",
-      "versions": [
-
+        "1.0"
       ],
       "query": "",
       "request_data": null,
@@ -177,14 +160,14 @@
         ]
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
       "verb": "GET",
       "path": "/api/v1/appointments",
       "versions": [
-
+        "1.0"
       ],
       "query": "",
       "request_data": null,
@@ -200,7 +183,7 @@
         ]
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -209,7 +192,7 @@
       "verb": "GET",
       "path": "/api/v1/appointments/last",
       "versions": [
-
+        "1.0"
       ],
       "query": "",
       "request_data": null,
@@ -222,7 +205,7 @@
       "verb": "GET",
       "path": "/api/v1/appointments/last",
       "versions": [
-
+        "1.0"
       ],
       "query": "",
       "request_data": null,
@@ -235,14 +218,14 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
       "verb": "GET",
       "path": "/api/v1/appointments/last",
       "versions": [
-
+        "1.0"
       ],
       "query": "",
       "request_data": null,
@@ -255,7 +238,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -270,7 +253,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -299,7 +282,7 @@
         "upload_preset": "2q4gaah5pzg6bpany8j6pmjcxy5amqfcjq976ce93rfttupa65drd8j4qdjzgmy4"
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -314,7 +297,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -339,12 +322,10 @@
       "query": "",
       "request_data": null,
       "response_data": {
-        "appointments": [
-
-        ]
+        "appointments": []
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -359,6 +340,36 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6/availability/2020-12-22",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "availability": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ]
+        }
+      },
+      "code": "200",
       "show_in_doc": 1,
       "recorded": true
     },
@@ -389,37 +400,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "GET",
-      "path": "/api/v1/teachers/6/availability/2020-12-22",
-      "versions": [
-        "1.0"
-      ],
-      "query": "",
-      "request_data": null,
-      "response_data": {
-        "teacher": {
-          "id": 6,
-          "availability": [
-            8,
-            9,
-            10,
-            11,
-            12,
-            14,
-            15,
-            16,
-            17,
-            18,
-            19
-          ]
-        }
-      },
-      "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -442,7 +423,7 @@
       },
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -493,7 +474,7 @@
         }
       },
       "code": "201",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -505,11 +486,10 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -519,8 +499,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": "This resource is forbidden",
       "code": "403",
       "show_in_doc": 0,
@@ -533,8 +512,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": {
         "teacher": {
           "id": 6,
@@ -546,7 +524,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -561,6 +539,46 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teachers": [
+          {
+            "id": 5,
+            "fullname": "Julio Profe PuntoNet",
+            "email": "julio@xmail.xyz",
+            "photo": "https://localhost:8080/image2.png",
+            "course": "Math",
+            "description": "Limits and derivatives"
+          },
+          {
+            "id": 4,
+            "fullname": "Neil deGrasse Tyson",
+            "email": "neil@xmail.xyz",
+            "photo": "https://localhost:8080/image1.png",
+            "course": "Physics",
+            "description": "Magnetars and Pulsars"
+          },
+          {
+            "id": 6,
+            "fullname": "Sergio Zambrano",
+            "email": "sergio@xmail.xyz",
+            "photo": "https://localhost:8080/image3.png",
+            "course": "Computer Science",
+            "description": "Algorithms and Artificial Intelligence"
+          }
+        ]
+      },
+      "code": "200",
       "show_in_doc": 1,
       "recorded": true
     },
@@ -601,47 +619,7 @@
         ]
       },
       "code": "200",
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "GET",
-      "path": "/api/v1/teachers",
-      "versions": [
-        "1.0"
-      ],
-      "query": "",
-      "request_data": null,
-      "response_data": {
-        "teachers": [
-          {
-            "id": 5,
-            "fullname": "Julio Profe PuntoNet",
-            "email": "julio@xmail.xyz",
-            "photo": "https://localhost:8080/image2.png",
-            "course": "Math",
-            "description": "Limits and derivatives"
-          },
-          {
-            "id": 4,
-            "fullname": "Neil deGrasse Tyson",
-            "email": "neil@xmail.xyz",
-            "photo": "https://localhost:8080/image1.png",
-            "course": "Physics",
-            "description": "Magnetars and Pulsars"
-          },
-          {
-            "id": 6,
-            "fullname": "Sergio Zambrano",
-            "email": "sergio@xmail.xyz",
-            "photo": "https://localhost:8080/image3.png",
-            "course": "Computer Science",
-            "description": "Algorithms and Artificial Intelligence"
-          }
-        ]
-      },
-      "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -656,6 +634,28 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/last",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
       "show_in_doc": 1,
       "recorded": true
     },
@@ -678,29 +678,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "GET",
-      "path": "/api/v1/teachers/last",
-      "versions": [
-        "1.0"
-      ],
-      "query": "",
-      "request_data": null,
-      "response_data": {
-        "teacher": {
-          "id": 6,
-          "fullname": "Sergio Zambrano",
-          "email": "sergio@xmail.xyz",
-          "photo": "https://localhost:8080/image3.png",
-          "description": "Algorithms and Artificial Intelligence",
-          "course": "Computer Science"
-        }
-      },
-      "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -715,6 +693,28 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
+      "show_in_doc": 0,
+      "recorded": true
+    },
+    {
+      "verb": "GET",
+      "path": "/api/v1/teachers/6",
+      "versions": [
+        "1.0"
+      ],
+      "query": "",
+      "request_data": null,
+      "response_data": {
+        "teacher": {
+          "id": 6,
+          "fullname": "Sergio Zambrano",
+          "email": "sergio@xmail.xyz",
+          "photo": "https://localhost:8080/image3.png",
+          "description": "Algorithms and Artificial Intelligence",
+          "course": "Computer Science"
+        }
+      },
+      "code": "200",
       "show_in_doc": 1,
       "recorded": true
     },
@@ -737,29 +737,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
-      "recorded": true
-    },
-    {
-      "verb": "GET",
-      "path": "/api/v1/teachers/6",
-      "versions": [
-        "1.0"
-      ],
-      "query": "",
-      "request_data": null,
-      "response_data": {
-        "teacher": {
-          "id": 6,
-          "fullname": "Sergio Zambrano",
-          "email": "sergio@xmail.xyz",
-          "photo": "https://localhost:8080/image3.png",
-          "description": "Algorithms and Artificial Intelligence",
-          "course": "Computer Science"
-        }
-      },
-      "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -780,7 +758,7 @@
       },
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -827,7 +805,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -869,11 +847,10 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -883,8 +860,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": "This resource is forbidden",
       "code": "403",
       "show_in_doc": 0,
@@ -897,8 +873,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {
-      },
+      "request_data": {},
       "response_data": {
         "user": {
           "id": 9,
@@ -909,7 +884,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -924,7 +899,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -974,7 +949,7 @@
         ]
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -989,7 +964,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -1023,7 +998,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -1038,7 +1013,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -1059,7 +1034,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     },
     {
@@ -1080,7 +1055,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -1095,7 +1070,7 @@
       "request_data": null,
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -1129,7 +1104,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ],
@@ -1151,7 +1126,7 @@
       },
       "response_data": null,
       "code": "401",
-      "show_in_doc": 1,
+      "show_in_doc": 0,
       "recorded": true
     },
     {
@@ -1199,7 +1174,7 @@
         }
       },
       "code": "200",
-      "show_in_doc": 0,
+      "show_in_doc": 1,
       "recorded": true
     }
   ]
