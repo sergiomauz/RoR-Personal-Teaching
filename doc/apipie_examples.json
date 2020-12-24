@@ -9,7 +9,7 @@
       "query": null,
       "request_data": {
         "appointment": {
-          "scheduled_for": "2020-12-22",
+          "scheduled_for": "2020-12-22 08:00",
           "teacher_id": "3"
         }
       },
@@ -27,14 +27,14 @@
       "query": null,
       "request_data": {
         "appointment": {
-          "scheduled_for": "2020-12-22",
+          "scheduled_for": "2020-12-22 08:00",
           "teacher_id": "3"
         }
       },
       "response_data": {
         "appointment": {
           "id": 3,
-          "scheduled_for": "2020-12-22T00:00:00.000Z",
+          "scheduled_for": "2020-12-22T08:00:00.000Z",
           "teacher_fullname": "Sergio Zambrano",
           "course": "Computer Science",
           "status": 1
@@ -53,14 +53,14 @@
       "query": null,
       "request_data": {
         "appointment": {
-          "scheduled_for": "2020-12-22",
+          "scheduled_for": "2020-12-22 16:00",
           "teacher_id": "3"
         }
       },
       "response_data": {
         "appointment": {
           "id": 4,
-          "scheduled_for": "2020-12-22T00:00:00.000Z",
+          "scheduled_for": "2020-12-22T16:00:00.000Z",
           "teacher_fullname": "Sergio Zambrano",
           "course": "Computer Science",
           "status": 1
@@ -105,13 +105,13 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {},
+      "request_data": null,
       "response_data": {
         "appointment": {
           "id": 1,
           "user_id": 1,
           "teacher_id": 1,
-          "scheduled_for": "2020-12-22T00:00:00.000Z"
+          "scheduled_for": "2020-12-22T11:00:00.000Z"
         }
       },
       "code": "200",
@@ -125,13 +125,13 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {},
+      "request_data": null,
       "response_data": {
         "appointment": {
           "id": 1,
           "user_id": 1,
           "teacher_id": 1,
-          "scheduled_for": "2020-12-22T00:00:00.000Z"
+          "scheduled_for": "2020-12-22T11:00:00.000Z"
         }
       },
       "code": "200",
@@ -152,7 +152,7 @@
         "appointments": [
           {
             "id": 2,
-            "scheduled_for": "2020-12-22T00:00:00.000Z",
+            "scheduled_for": "2020-12-22T11:00:00.000Z",
             "teacher_fullname": "Neil deGrasse Tyson",
             "course": "Physics",
             "status": 1
@@ -175,7 +175,7 @@
         "appointments": [
           {
             "id": 1,
-            "scheduled_for": "2020-12-22T00:00:00.000Z",
+            "scheduled_for": "2020-12-22T11:00:00.000Z",
             "teacher_fullname": "Neil deGrasse Tyson",
             "course": "Physics",
             "status": 1
@@ -214,7 +214,7 @@
           "id": 2,
           "user_id": 2,
           "teacher_id": 1,
-          "scheduled_for": "2020-12-22T00:00:00.000Z"
+          "scheduled_for": "2020-12-22T11:00:00.000Z"
         }
       },
       "code": "200",
@@ -234,7 +234,7 @@
           "id": 1,
           "user_id": 1,
           "teacher_id": 1,
-          "scheduled_for": "2020-12-22T00:00:00.000Z"
+          "scheduled_for": "2020-12-22T11:00:00.000Z"
         }
       },
       "code": "200",
