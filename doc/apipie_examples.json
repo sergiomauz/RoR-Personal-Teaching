@@ -873,7 +873,7 @@
         "1.0"
       ],
       "query": null,
-      "request_data": {},
+      "request_data": null,
       "response_data": {
         "user": {
           "id": 9,

@@ -54,7 +54,7 @@
 ## API Documentation
 - This project uses **Apipie Gem** for API documentation.
 - After run ```rails s```, go to **http://localhost:3000/api/v1/doc** in your favorite browser to see the API documentation.
-- Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/doc** for online documentation.
+- Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/doc** for online documentation, but you will need to sign in as an admin user (see the **db/seeds.rb** file to know the admin user example).
 
 
 ## Author

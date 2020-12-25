@@ -167,6 +167,7 @@ class Api::V1::TeachersController < ApplicationController
   end
   error code: 401, desc: 'Header "Authorization" is missed.'
   error code: 403, desc: 'Header "Authorization" is not valid or expired.'
+  error :unprocessable_entity, 'Could not save the entity.'
   def create
     if admin_permission?
       @teacher = Teacher.new(teacher_params)
@@ -205,6 +206,7 @@ class Api::V1::TeachersController < ApplicationController
   end
   error code: 401, desc: 'Header "Authorization" is missed.'
   error code: 403, desc: 'Header "Authorization" is not valid or expired.'
+  error :unprocessable_entity, 'Could not save the entity.'
   def update
     if admin_permission?
       if @teacher.update(teacher_params)

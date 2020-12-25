@@ -74,6 +74,7 @@ class Api::V1::AppointmentsController < ApplicationController
   end
   error code: 401, desc: 'Header "Authorization" is missed.'
   error code: 403, desc: 'Header "Authorization" is not valid or expired.'
+  error :unprocessable_entity, 'Could not save the entity.'
   def create
     @new_appointment = Appointment.new(appointment_params)
     @new_appointment.user_id = @current_user.id
