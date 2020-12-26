@@ -55,6 +55,50 @@
 - This project uses **Apipie Gem** for API documentation.
 - After run ```rails s```, go to **http://localhost:3000/api/v1/apipiedoc** in your favorite browser to see the API documentation.
 - Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/apipiedoc** for online documentation, but you will need to sign in as an admin user (see the **db/seeds.rb** file to know the admin user example).
+- This API uses [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper#documentation) to Sign In with JWT. 
+- To sign in and use the API (at least if it is required), you must create an **access_token** using ```/api/v1/oauth/token``` sending a POST request:
+
+```json
+{
+  "grant_type": "password",
+  "username": "anyuser",
+  "password": "som3StrongPassw0rd"
+}
+```
+
+- API will return something like this:
+
+```json
+{
+    "access_token": "7p-ol7DSFL8pyFx_a1McTQQq9fIWEgYTSCSCg8DQEhw",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "refresh_token": "kcu0UysdF-bZcOi_xYcAvSkIfvejggcW_O3AGgdYPug",
+    "created_at": 1609000354
+}
+```
+
+- You must use **access_token** as **Authorization** parameter (prefixed by the word **Bearer**) in the Header of every request to API (if it is required, according to API documentation).
+- Also, you can use **refresh_token** to renew your **access_token** without passing username and password again. For that, you must send a POST request:
+
+```json
+{
+  "grant_type": "refresh_token",
+  "refresh_token": "kcu0UysdF-bZcOi_xYcAvSkIfvejggcW_O3AGgdYPug"
+}
+```
+
+- API will return something similar when you pass username and password:
+
+```json
+{
+    "access_token": "HA2P1ZKKJZJ4SajKrjSTX9R4DydNlXQhi5QyFVTuF08",
+    "token_type": "Bearer",
+    "expires_in": 3600,
+    "refresh_token": "s6eBdXEb0mnc4AzVgVzAgyC-owhmww4LNP2dIn3Dk9Q",
+    "created_at": 1609003229
+}
+```
 
 
 ## Author
