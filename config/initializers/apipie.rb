@@ -2,7 +2,7 @@ Apipie.configure do |config|
   config.app_name                = 'Backend Personal Teaching'
   config.app_info                = 'It is documentation for the API of Backend Personal Teaching for booking an appointment with a teacher.'
   config.api_base_url            = '/api/v1'
-  config.doc_base_url            = '/api/v1/apipiedoc'
+  config.doc_base_url            = '/apipiedoc'
   config.link_extension          = ''
   config.translate               = false
   config.validate                = false

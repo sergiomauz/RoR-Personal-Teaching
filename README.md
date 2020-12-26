@@ -1,4 +1,4 @@
-# PERSONAL TEACHING - BACKEND USING RUBY ON RAILS
+# PERSONAL TEACHING - ROR BACKEND
  > This project implements a simple API for an Appointments Book System using Ruby on Rails, as part of my final project at Microverse.
 
 
@@ -25,7 +25,8 @@
 
 
 ## Live Demo
-[Personal Teaching API](https://ror-personal-teaching-backend.herokuapp.com/api/v1/). See the documentation before to use.
+- [Personal Teaching API](https://ror-personal-teaching-backend.herokuapp.com/api/v1/). See the documentation before to use.
+- [API Documentation](https://ror-personal-teaching-backend.herokuapp.com/apipiedoc). See the documentation before to use.
 
 
 ## How to Install
@@ -53,8 +54,8 @@
 
 ## API Documentation
 - This project uses **Apipie Gem** for API documentation.
-- After run ```rails s```, go to **http://localhost:3000/api/v1/apipiedoc** in your favorite browser to see the API documentation.
-- Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/api/v1/apipiedoc** for online documentation, but you will need to sign in as an admin user (see the **db/seeds.rb** file to know the admin user example).
+- After run ```rails s```, go to **http://localhost:3000/apipiedoc** in your favorite browser to see the API documentation.
+- Also, you can go to **https://ror-personal-teaching-backend.herokuapp.com/apipiedoc** for online documentation, but you will need to sign in as an admin user (see the **db/seeds.rb** file to know the admin user example).
 - This API uses [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper#documentation) to Sign In with JWT. 
 - To sign in and use the API (at least if it is required), you must create an **access_token** using ```/api/v1/oauth/token``` sending a POST request:
 
