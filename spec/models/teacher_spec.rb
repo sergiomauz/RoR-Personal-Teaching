@@ -1,57 +1,58 @@
 require 'rails_helper'
 
 RSpec.describe Teacher, type: :model do
-  describe 'Tests for TEACHER model' do
-    it 'Valid full Teacher' do
-      @teacher = Teacher.new({
-                               fullname: 'Son Goku',
-                               email: 'goku@dragonball.xyz',
-                               course: 'Martial Arts',
-                               description: 'How to manage Migate no Gokui?',
-                               photo: 'https://localhost:8080/image.png'
-                             })
-      @teacher.save
+  before(:all) do
+    FactoryBot.create(:teacher,
+                      fullname: 'Son Goku',
+                      email: 'goku@dragonball.xyz',
+                      course: 'Martial Arts',
+                      description: 'How to manage Migate no Gokui?',
+                      photo: 'https://localhost:8080/image.png')
+  end
 
-      expect(@teacher).to be_valid
-      expect(Teacher.last).to be_valid
+  describe 'Tests for TEACHER model' do
+    let(:teacher_one) { Teacher.last }
+
+    it 'Valid full Teacher' do
+      expect(teacher_one).to be_valid
     end
 
     it 'Valid Teacher with no photo' do
-      @teacher = Teacher.new({
-                               fullname: 'Son Goku',
-                               email: 'goku@dragonball.xyz',
-                               course: 'Martial Arts',
-                               description: 'How to manage Migate no Gokui?'
-                             })
-      @teacher.save
+      @teacher = Teacher.new(
+        {
+          fullname: 'Son Goku',
+          email: 'goku@dragonball.xyz',
+          course: 'Martial Arts',
+          description: 'How to manage Migate no Gokui?'
+        }
+      )
 
       expect(@teacher).to be_valid
-      expect(Teacher.last).to be_valid
     end
 
-    it 'User with no valid email' do
-      @teacher = Teacher.new({
-                               fullname: 'Son Goku',
-                               email: 'songokuxyz',
-                               course: 'Martial Arts',
-                               description: 'How to manage Migate no Gokui?'
-                             })
-      @teacher.save
+    it 'Teacher with no valid email' do
+      @teacher = Teacher.new(
+        {
+          fullname: 'Son Goku',
+          email: 'songokuxyz',
+          course: 'Martial Arts',
+          description: 'How to manage Migate no Gokui?'
+        }
+      )
 
       expect(@teacher).to_not be_valid
-      expect(Teacher.last).to be nil
     end
 
-    it 'User with no description' do
-      @teacher = Teacher.new({
-                               fullname: 'Son Goku',
-                               email: 'songokuxyz',
-                               course: 'Martial Arts'
-                             })
-      @teacher.save
+    it 'Teacher with no description' do
+      @teacher = Teacher.new(
+        {
+          fullname: 'Son Goku',
+          email: 'songokuxyz',
+          course: 'Martial Arts'
+        }
+      )
 
       expect(@teacher).to_not be_valid
-      expect(Teacher.last).to be nil
     end
   end
 end
