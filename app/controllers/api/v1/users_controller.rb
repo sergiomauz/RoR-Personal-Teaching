@@ -3,6 +3,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
   before_action :set_users, only: %i[index]
   before_action :set_last_user, only: %i[last]
+  before_action :set_current_user, only: %i[myprofile myappointments]
 
   include UsersDoc
 
@@ -20,6 +21,12 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/myprofile
   def myprofile
     render :myprofile
+  end
+
+  # GET /users/myappointments
+  def myappointments
+    @appointments = @user.my_appointments
+    render :appointments
   end
 
   # GET /users
@@ -83,6 +90,10 @@ class Api::V1::UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_current_user
+    @user = current_user
   end
 
   def set_users

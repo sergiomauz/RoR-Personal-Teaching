@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/users/last', to: 'users#last', as: 'users_last'
       get '/users/myprofile', to: 'users#myprofile', as: 'users_myprofile'
+      get '/users/myappointments', to: 'users#myappointments', as: 'users_myappointments'
       get '/cloudinary', to: 'cloudinary#index', as: 'get_upload_preset'
       get '/teachers/last', to: 'teachers#last', as: 'teachers_last'
       get '/teachers/:id/availability/:date', to: 'teachers#availability', as: 'teachers_availability'

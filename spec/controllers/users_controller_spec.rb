@@ -21,6 +21,34 @@ RSpec.describe Api::V1::UsersController do
                       fullname: 'Good Employee',
                       email: 'employee@example.xyz',
                       admin: false)
+
+    FactoryBot.create(:teacher,
+                      fullname: 'Neil deGrasse Tyson',
+                      course: 'Physics',
+                      description: 'Magnetars and Pulsars',
+                      email: 'neil@xmail.xyz',
+                      photo: 'https://localhost:8080/image1.png')
+    FactoryBot.create(:teacher,
+                      fullname: 'Julio Profe PuntoNet',
+                      course: 'Math',
+                      description: 'Limits and derivatives',
+                      email: 'julio@xmail.xyz',
+                      photo: 'https://localhost:8080/image2.png')
+    FactoryBot.create(:teacher,
+                      fullname: 'Sergio Zambrano',
+                      course: 'Computer Science',
+                      description: 'Algorithms and Artificial Intelligence',
+                      email: 'sergio@xmail.xyz',
+                      photo: 'https://localhost:8080/image3.png')
+
+    FactoryBot.create(:appointment,
+                      teacher_id: Teacher.first.id,
+                      user_id: User.first.id,
+                      scheduled_for: Time.now.utc.next_day(1).to_s[0..9])
+    FactoryBot.create(:appointment,
+                      teacher_id: Teacher.first.id,
+                      user_id: User.last.id,
+                      scheduled_for: Time.now.utc.next_day(1).to_s[0..9])
   end
 
   describe 'Tests for USERS controller' do
@@ -133,16 +161,42 @@ RSpec.describe Api::V1::UsersController do
       end
     end
 
+    context 'GET #myappointments' do
+      it 'Returns HTTP unauthorized if do not use a session' do
+        get :myappointments, format: :json
+
+        expect(response).to have_http_status(:unauthorized)
+      end
+
+      it 'Returns HTTP forbidden if use -not_admin_session-' do
+        headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
+        request.headers.merge! headers
+        get :myappointments, format: :json
+
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body).keys).to match_array(['appointments'])
+      end
+
+      it 'Returns HTTP success if use -admin_session-' do
+        headers = { 'Authorization': 'Bearer ' + admin_session.token }
+        request.headers.merge! headers
+        get :myappointments, format: :json
+
+        expect(response).to have_http_status(:success)
+        expect(JSON.parse(response.body).keys).to match_array(['appointments'])
+      end
+    end
+
     context 'POST #create' do
       it 'Returns HTTP unauthorized if do not use a session' do
-        post :create,
-             params: { user: {
-               fullname: 'Another Good Student',
-               email: 'another@xmail.xyz',
-               username: 'another',
-               password: '123456'
-             } },
-             format: :json
+        post :create, params: {
+          user: {
+            fullname: 'Another Good Student',
+            email: 'another@xmail.xyz',
+            username: 'another',
+            password: '123456'
+          }
+        }, format: :json
 
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body).keys).to match_array(['user'])

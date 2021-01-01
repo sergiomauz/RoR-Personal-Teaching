@@ -6,25 +6,6 @@ class Api::V1::AppointmentsController < ApplicationController
 
   include AppointmentsDoc
 
-  # GET /appointments
-  def index
-    if @current_user
-      @appointments = Appointment
-        .select(:id,
-                :scheduled_for,
-                'teachers.fullname as teacher_fullname',
-                'teachers.course',
-                'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-        .joins(:teacher)
-        .where(user_id: @current_user.id)
-        .order(scheduled_for: :asc)
-
-      render :index
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
-  end
-
   # GET /appointments/last
   def last
     render :show
@@ -45,7 +26,7 @@ class Api::V1::AppointmentsController < ApplicationController
                   'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
           .joins(:teacher)
           .where(id: @new_appointment.id)
-          .first
+          .last
 
         render json: { 'appointment' => @appointment }, status: :created
       else

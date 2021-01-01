@@ -57,32 +57,6 @@ RSpec.describe Api::V1::AppointmentsController do
 
     render_views
 
-    context 'GET #index' do
-      it 'Returns HTTP unauthorized if do not use a session' do
-        get :index, format: :json
-
-        expect(response).to have_http_status(:unauthorized)
-      end
-
-      it 'Returns HTTP forbidden if use -not_admin_session-' do
-        headers = { 'Authorization': 'Bearer ' + not_admin_session.token }
-        request.headers.merge! headers
-        get :index, format: :json
-
-        expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body).keys).to match_array(['appointments'])
-      end
-
-      it 'Returns HTTP success if use -admin_session-' do
-        headers = { 'Authorization': 'Bearer ' + admin_session.token }
-        request.headers.merge! headers
-        get :index, format: :json
-
-        expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body).keys).to match_array(['appointments'])
-      end
-    end
-
     context 'GET #last' do
       it 'Returns HTTP unauthorized if do not use a session' do
         get :last, format: :json

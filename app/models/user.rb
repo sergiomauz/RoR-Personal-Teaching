@@ -13,6 +13,18 @@ class User < ApplicationRecord
 
   has_many :appointments, class_name: 'Appointment'
 
+  def my_appointments
+    Appointment
+      .select(:id,
+              :scheduled_for,
+              'teachers.fullname as teacher_fullname',
+              'teachers.course',
+              'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
+      .joins(:teacher)
+      .where(user_id: id)
+      .order(scheduled_for: :asc)
+  end
+
   def set_role
     self.admin = false if admin.nil?
   end

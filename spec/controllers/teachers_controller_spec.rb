@@ -39,6 +39,10 @@ RSpec.describe Api::V1::TeachersController do
                       teacher_id: Teacher.first.id,
                       user_id: User.first.id,
                       scheduled_for: Time.now.utc.next_day(1).to_s[0..9])
+    FactoryBot.create(:appointment,
+                      teacher_id: Teacher.first.id,
+                      user_id: User.last.id,
+                      scheduled_for: Time.now.utc.next_day(1).to_s[0..9])
   end
 
   describe 'Tests for TEACHERS controller' do
