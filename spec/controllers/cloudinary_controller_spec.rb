@@ -46,7 +46,7 @@ RSpec.describe Api::V1::CloudinaryController do
         get :index, format: :json
 
         expect(response).to have_http_status(:success)
-        expect(JSON.parse(response.body).keys).to match_array(%w[cloud_name upload_preset])
+        expect(JSON.parse(response.body).keys).to match_array(%w[cloudinary_config])
       end
     end
   end

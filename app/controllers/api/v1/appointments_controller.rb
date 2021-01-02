@@ -1,7 +1,8 @@
 class Api::V1::AppointmentsController < ApplicationController
   before_action :doorkeeper_authorize!
+  before_action :set_current_user
   before_action :set_appointment, only: %i[destroy]
-  before_action :set_current_user, only: %i[index create last]
+  before_action :admin_or_owner_auth, only: %i[destroy]
   before_action :set_last_appointment, only: %i[last]
 
   include AppointmentsDoc
@@ -39,12 +40,8 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # DELETE /appointments/1
   def destroy
-    if admin_permission? || @appointment.user_id == current_user.id
-      @appointment.destroy
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    @appointment.destroy
+    render :show
   end
 
   private
@@ -60,6 +57,12 @@ class Api::V1::AppointmentsController < ApplicationController
 
   def set_current_user
     @current_user = current_user
+  end
+
+  def admin_or_owner_auth
+    return if current_user.admin || @appointment.user_id == current_user.id
+
+    render json: return_error_message(403), status: :forbidden
   end
 
   # Only allow a list of trusted parameters through.

@@ -3,6 +3,7 @@ class Api::V1::TeachersController < ApplicationController
   before_action :set_teacher, only: %i[show update destroy availability appointments]
   before_action :set_teachers, only: %i[index]
   before_action :set_last_teacher, only: %i[last]
+  before_action :admin_permission?, only: %i[appointments create update destroy]
 
   include TeachersDoc
 
@@ -29,51 +30,35 @@ class Api::V1::TeachersController < ApplicationController
 
   # GET /teachers/1/appointments
   def appointments
-    if admin_permission?
-      @appointments = @teacher.appointments_scheduled
-      render :appointments
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    @appointments = @teacher.appointments_scheduled
+    render :appointments
   end
 
   # POST /teachers
   def create
-    if admin_permission?
-      @teacher = Teacher.new(teacher_params)
-      if @teacher.save
-        render :show, status: :created
-      else
-        render json: @teacher.errors, status: :unprocessable_entity
-      end
+    @teacher = Teacher.new(teacher_params)
+    if @teacher.save
+      render :show, status: :created
     else
-      render json: return_error_message(403), status: :forbidden
+      render json: @teacher.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /teachers/1
   def update
-    if admin_permission?
-      if @teacher.update(teacher_params)
-        render :show
-      else
-        render json: @teacher.errors, status: :unprocessable_entity
-      end
+    if @teacher.update(teacher_params)
+      render :show
     else
-      render json: return_error_message(403), status: :forbidden
+      render json: @teacher.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /teachers/1
   def destroy
-    if admin_permission?
-      Appointment.where(teacher_id: @teacher.id).destroy_all
-      @teacher.destroy
+    Appointment.where(teacher_id: @teacher.id).destroy_all
+    @teacher.destroy
 
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    render :show
   end
 
   private

@@ -29,13 +29,13 @@ RSpec.describe Appointment, type: :model do
     end
 
     it 'Appointment with no Teacher is not valid' do
-      @appointment = Appointment.new({ user_id: User.last.id, scheduled_for: Time.now.utc.next_day(3) })
+      @appointment = Appointment.new({ user_id: user_one.id, scheduled_for: Time.now.utc.next_day(3) })
 
       expect(@appointment).to_not be_valid
     end
 
     it 'Appointment with no User is not valid' do
-      @appointment = Appointment.new({ teacher_id: Teacher.last.id, scheduled_for: Time.now.utc.next_day(3) })
+      @appointment = Appointment.new({ teacher_id: teacher_one.id, scheduled_for: Time.now.utc.next_day(3) })
 
       expect(@appointment).to_not be_valid
     end

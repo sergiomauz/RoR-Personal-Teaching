@@ -22,22 +22,23 @@ class Teacher < ApplicationRecord
 
   def availability(booking_date)
     if booking_date.to_date > Time.now.utc.to_date
-      @appointments = Appointment.where('teacher_id = ? AND scheduled_for BETWEEN ? AND ?',
-                                        id,
-                                        booking_date.to_date,
-                                        booking_date.to_date.next_day(1))
+      @availability =
+        [8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19] -
+        Appointment
+          .where('teacher_id = ? AND scheduled_for BETWEEN ? AND ?',
+                 id, booking_date.to_date, booking_date.to_date.next_day(1))
+          .pluck(Arel.sql('CAST(extract(hour from scheduled_for) as INTEGER)'))
 
       return {
         'teacher' => {
           'id' => id,
-          'availability' => ((8..12).to_a | (14..19).to_a) - @appointments.map { |item| item.scheduled_for.hour }.to_a
+          'availability' => @availability
         }
       }
     end
 
     {
-      'teacher' =>
-      {
+      'teacher' => {
         'id' => id,
         'availability' => []
       }

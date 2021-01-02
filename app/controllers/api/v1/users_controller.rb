@@ -4,6 +4,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_users, only: %i[index]
   before_action :set_last_user, only: %i[last]
   before_action :set_current_user, only: %i[myprofile myappointments]
+  before_action :admin_permission?, only: %i[index show last update destroy]
 
   include UsersDoc
 
@@ -31,54 +32,34 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users
   def index
-    if admin_permission?
-      render :index
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    render :index
   end
 
   # GET /users/1
   def show
-    if admin_permission?
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    render :show
   end
 
   # GET /users/last
   def last
-    if admin_permission?
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    render :show
   end
 
   # PATCH/PUT /users/1
   def update
-    if admin_permission?
-      if @user.update(user_params)
-        render :show
-      else
-        render json: @user.errors, status: :unprocessable_entity
-      end
+    if @user.update(user_params)
+      render :show
     else
-      render json: return_error_message(403), status: :forbidden
+      render json: @user.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /users/1
   def destroy
-    if admin_permission?
-      Appointment.where(user_id: @user.id).destroy_all
-      @user.destroy
+    Appointment.where(user_id: @user.id).destroy_all
+    @user.destroy
 
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    render :show
   end
 
   private
