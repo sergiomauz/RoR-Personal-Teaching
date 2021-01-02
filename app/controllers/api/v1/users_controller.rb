@@ -4,6 +4,7 @@ class Api::V1::UsersController < ApplicationController
   before_action :set_users, only: %i[index]
   before_action :set_last_user, only: %i[last]
   before_action :set_current_user, only: %i[myprofile myappointments]
+  before_action :set_appointments, only: %i[destroy]
   before_action :admin_permission?, only: %i[index show last update destroy]
 
   include UsersDoc
@@ -56,7 +57,7 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-    Appointment.where(user_id: @user.id).destroy_all
+    @appointments.destroy_all
     @user.destroy
 
     render :show
@@ -79,6 +80,10 @@ class Api::V1::UsersController < ApplicationController
 
   def set_users
     @users = User.all.order(:fullname)
+  end
+
+  def set_appointments
+    @appointments = Appointment.where(user_id: @user.id)
   end
 
   # Only allow a list of trusted parameters through.

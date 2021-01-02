@@ -14,27 +14,15 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @new_appointment = Appointment.new(appointment_params)
+    @new_appointment = Appointment.new(appointment_params)    
     @new_appointment.user_id = @current_user.id
 
-    if @new_appointment.scheduled_for > Time.now.utc
-      if @new_appointment.save
-        @appointment = Appointment
-          .select(:id,
-                  :scheduled_for,
-                  'teachers.fullname as teacher_fullname',
-                  'teachers.course',
-                  'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-          .joins(:teacher)
-          .where(id: @new_appointment.id)
-          .last
+    if @new_appointment.save
+      @appointment = Appointment.detailed_info(@new_appointment.id)
 
-        render json: { 'appointment' => @appointment }, status: :created
-      else
-        render json: @new_appointment.errors, status: :unprocessable_entity
-      end
+      render :detailed, status: :created
     else
-      render json: return_error_message(403), status: :forbidden
+      render json: @new_appointment.errors, status: :unprocessable_entity
     end
   end
 

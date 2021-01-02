@@ -54,6 +54,7 @@ RSpec.describe Api::V1::AppointmentsController do
     let(:admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_first_id, expires_in: 1.hours) }
     let(:not_admin_session) { Doorkeeper::AccessToken.create!(resource_owner_id: user_last_id, expires_in: 1.hours) }
     let(:date_for_testing_appointments) { Time.now.utc.next_day(1).to_s[0..9] }
+    let(:invalid_date_for_testing_appointments) { Time.now.utc.next_day(-10).to_s[0..9] }
 
     render_views
 
@@ -121,7 +122,7 @@ RSpec.describe Api::V1::AppointmentsController do
 
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body).keys).to match_array(['appointment'])
-      end
+      end 
     end
 
     context 'DELETE #destroy' do

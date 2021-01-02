@@ -3,6 +3,7 @@ class Api::V1::TeachersController < ApplicationController
   before_action :set_teacher, only: %i[show update destroy availability appointments]
   before_action :set_teachers, only: %i[index]
   before_action :set_last_teacher, only: %i[last]
+  before_action :set_appointments, only: %i[destroy]
   before_action :admin_permission?, only: %i[appointments create update destroy]
 
   include TeachersDoc
@@ -55,7 +56,7 @@ class Api::V1::TeachersController < ApplicationController
 
   # DELETE /teachers/1
   def destroy
-    Appointment.where(teacher_id: @teacher.id).destroy_all
+    @appointments.destroy_all
     @teacher.destroy
 
     render :show
@@ -74,6 +75,10 @@ class Api::V1::TeachersController < ApplicationController
 
   def set_teachers
     @teachers = Teacher.all.order(:fullname)
+  end
+
+  def set_appointments
+    @appointments = Appointment.where(teacher_id: @teacher.id)
   end
 
   # Only allow a trusted parameter "white list" through.
