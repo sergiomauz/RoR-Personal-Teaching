@@ -122,7 +122,7 @@ RSpec.describe Api::V1::AppointmentsController do
 
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body).keys).to match_array(['appointment'])
-      end 
+      end
     end
 
     context 'DELETE #destroy' do

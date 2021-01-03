@@ -14,7 +14,7 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # POST /appointments
   def create
-    @new_appointment = Appointment.new(appointment_params)    
+    @new_appointment = Appointment.new(appointment_params)
     @new_appointment.user_id = @current_user.id
 
     if @new_appointment.save
