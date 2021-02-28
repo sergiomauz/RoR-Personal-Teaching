@@ -1,25 +1,15 @@
 class Api::V1::AppointmentsController < ApplicationController
   before_action :doorkeeper_authorize!
+  before_action :set_current_user
   before_action :set_appointment, only: %i[destroy]
-  before_action :set_current_user, only: %i[index create]
+  before_action :admin_or_owner_auth, only: %i[destroy]
+  before_action :set_last_appointment, only: %i[last]
 
-  # GET /appointments
-  def index
-    if @current_user
-      @appointments = Appointment
-        .select(:id,
-                :scheduled_for,
-                'teachers.fullname as teacher_fullname',
-                'teachers.course',
-                'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-        .joins(:teacher)
-        .where(user_id: @current_user.id)
-        .order(scheduled_for: :asc)
+  include AppointmentsDoc
 
-      render :index
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+  # GET /appointments/last
+  def last
+    render :show
   end
 
   # POST /appointments
@@ -28,17 +18,9 @@ class Api::V1::AppointmentsController < ApplicationController
     @new_appointment.user_id = @current_user.id
 
     if @new_appointment.save
-      @appointment = Appointment
-        .select(:id,
-                :scheduled_for,
-                'teachers.fullname as teacher_fullname',
-                'teachers.course',
-                'CASE WHEN scheduled_for > timezone(\'utc\', now()) THEN 1 ELSE 0 END as status')
-        .joins(:teacher)
-        .where(id: @new_appointment.id)
-        .first
+      @appointment = Appointment.detailed_info(@new_appointment.id)
 
-      render json: { 'appointment' => @appointment }, status: :created
+      render :detailed, status: :created
     else
       render json: @new_appointment.errors, status: :unprocessable_entity
     end
@@ -46,23 +28,29 @@ class Api::V1::AppointmentsController < ApplicationController
 
   # DELETE /appointments/1
   def destroy
-    if admin_permission? || @appointment.user_id == current_user.id
-      @appointment.destroy
-      render :show
-    else
-      render json: return_error_message(403), status: :forbidden
-    end
+    @appointment.destroy
+    render :show
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_last_appointment
+    @appointment = Appointment.where(user_id: @current_user.id).last
+  end
+
   def set_appointment
     @appointment = Appointment.find(params[:id])
   end
 
   def set_current_user
     @current_user = current_user
+  end
+
+  def admin_or_owner_auth
+    return if current_user.admin || @appointment.user_id == current_user.id
+
+    render json: return_error_message(403), status: :forbidden
   end
 
   # Only allow a list of trusted parameters through.

@@ -29,6 +29,6 @@ class ApplicationController < ActionController::API
   def admin_permission?
     # We can use variables for getting permissions if it was necessary
     # In this case, if current user is admin, it has permission
-    current_user.admin
+    render json: return_error_message(403), status: :forbidden unless current_user.admin
   end
 end

@@ -1,7 +1,7 @@
 json.myprofile do
-  json.id current_user.id
-  json.fullname current_user.fullname
-  json.username current_user.username
-  json.email current_user.email
-  json.admin current_user.admin
+  json.id @user.id
+  json.fullname @user.fullname
+  json.username @user.username
+  json.email @user.email
+  json.admin @user.admin
 end
